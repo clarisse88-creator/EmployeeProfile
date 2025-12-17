@@ -1,0 +1,44 @@
+﻿@page "/add-EmployeeLanguage"
+@using Web.Model
+@inject HttpClient http
+@inject NavigationManager nav
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet"/>
+
+    <h3 class="label">Add Employee Experience</h3>
+
+    <EditForm Model="EmployeeLanguage" OnValidSubmit="SaveEmployeeLanguage">
+
+        <label class="label">Employee</label>
+        <input type="text" placeholder="Enter Employee" class="item" @bind-value="EmployeeLanguage.EmployeeId" />
+        <label class="label">LanguageName</label>
+        <input type="text" placeholder="Enter LanguageName" class="item" @bind-value="EmployeeLanguage.LanguageName" />
+        <label class="label">Position</label>
+        <input type="text" placeholder="Enter ProficiencyLevel" class="item" @bind-value="EmployeeLanguage.ProficiencyLevel" />
+        <label class="label">Writing</label>
+        <input type="DateTime" placeholder="Enter Writing " class="item" @bind-value="EmployeeLanguage.Writing" />
+        <label class="label">Reading</label>
+        <input type="DateTime" placeholder="Enter Reading " class="item" @bind-value="EmployeeLanguage.Reading" />
+        <label class="label">Speaking</label>
+        <input type="text" placeholder="Enter Speaking  " class="item" @bind-value="EmployeeLanguage.Speaking" />
+        <label class="label">CreatedBy</label>
+        <input type="text" placeholder=" CreatedBy  " class="item" @bind-value="EmployeeLanguage.CreatedBy" />
+
+        <button type="submit" class="BUTTON">Save</button>
+
+    </EditForm>
+    </div>
+@code {
+    EmployeeLanguageInputDto EmployeeLanguage = new EmployeeLanguageInputDto();
+
+    public async Task SaveEmployeeLanguage()
+    {
+        var result = await http.PostAsJsonAsync("/SaveEmployeeLanguage", EmployeeLanguage);
+        if (result.IsSuccessStatusCode)
+        {
+            nav.NavigateTo("/EmployeeLanguange");
+        }
+    }
+}

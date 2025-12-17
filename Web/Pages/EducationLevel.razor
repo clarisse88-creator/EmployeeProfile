@@ -1,0 +1,53 @@
+﻿@page "/EducationLevel"
+@using Web.Model
+
+@layout MainLayout
+@inject HttpClient http
+
+<div class="container-fluid mt-5">
+
+<link href="css/form.css" rel="stylesheet" />
+
+<h3>EducationLevel</h3>
+
+
+<a href="/add-EducationLevel">Add EducationLevel</a>
+
+
+    <table class="card">
+    <thead>
+    <th>employeeId</th>
+    <th>Institution</th>
+    <th>Qualification</th>
+    <th>StartYear</th>
+    <th>EndYear</th>    
+
+    </thead>
+        <tbody >
+        @foreach (var item in listEducationLevel)
+        {
+            <tr>
+                <td>@item.employeeId</td>
+                <td>@item.Institution</td>
+                <td>@item.Qualification</td>
+                <td>@item.StartYear</td>
+                <td>@item.EndYear</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+@code {
+    List<EducationLevelGetDto> listEducationLevel = new List<EducationLevelGetDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        listEducationLevel = await http.GetFromJsonAsync<List<EducationLevelGetDto>>("/GetEducationLevel");
+    }
+
+}
+
+
+
+

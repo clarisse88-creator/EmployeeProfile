@@ -1,0 +1,47 @@
+﻿@page "/add-EmployeeExperience"
+@using Web.Model
+@inject HttpClient http
+@inject NavigationManager nav
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet"/>
+
+    <h3 class="label">Add Employee Experience</h3>
+
+    <EditForm Model="EmployeeExperience" OnValidSubmit="SaveEmployeeExperience">
+
+        <label class="label">Employee</label>
+        <input type="text" placeholder="Enter Employee" class="item" @bind-value="EmployeeExperience.EmployeeId" />
+        <label class="label">CompanyName</label>
+        <input type="text" placeholder="Enter CompanyName" class="item" @bind-value="EmployeeExperience.CompanyName" />
+        <label class="label">Position</label>
+        <input type="text" placeholder="Enter Position" class="item" @bind-value="EmployeeExperience.Position" />
+        <label class="label">Start Date</label>
+        <input type="DateTime" placeholder="Enter Start Date " class="item" @bind-value="EmployeeExperience.StartDate" />
+        <label class="label">End Date</label>
+        <input type="DateTime" placeholder="Enter End Date " class="item" @bind-value="EmployeeExperience.EndDate" />
+        <label class="label">Description</label>
+        <input type="text" placeholder="Enter Description  " class="item" @bind-value="EmployeeExperience.Description" />
+        <input type="text" placeholder=" CreatedBy  " class="item" @bind-value="EmployeeExperience.CreatedBy" />
+
+        <button type="submit" class="BUTTON">Save</button>
+
+    </EditForm>
+
+</div>
+@code
+{
+    EmployeeExperienceInputDto EmployeeExperience = new EmployeeExperienceInputDto();
+
+    public async Task SaveEmployeeExperience()
+    {
+        var result = await http.PostAsJsonAsync("/SaveEmployeeExperience", EmployeeExperience);
+        if (result.IsSuccessStatusCode)
+        {
+            nav.NavigateTo("/EmployeeExperience");
+        }
+    }
+
+}
+

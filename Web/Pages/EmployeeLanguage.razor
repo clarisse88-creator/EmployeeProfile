@@ -1,0 +1,61 @@
+﻿@page "/EmployeeLanguage"
+@using Web.Model
+
+@layout MainLayout
+@inject HttpClient http
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet" />
+
+    <h3>EmployeeExperience</h3>
+
+
+    <a href="/add-EmployeeLanguage">Add EmployeeLanguage</a>
+
+
+    <table class="card">
+        <thead>
+        <th>EmployeeId</th>
+        <th>LanguageName</th>
+        <th>ProficiencyLevel</th>
+        <th>Writing</th>
+        <th>Reading</th>
+        <th>Speaking</th>
+        <th>CreatedBy</th>
+
+
+
+        </thead>
+        <tbody>
+            @foreach (var item in listEmployeeLanguage)
+            {
+                <tr>
+                    <td>@item.EmployeeId</td>
+                    <td>@item.LanguageName</td>
+                    <td>@item.ProficiencyLevel</td>
+                    <td>@item.Writing</td>
+                    <td>@item.Reading</td>
+                    <td>@item.Speaking</td>
+                    <td>@item.CreatedBy</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    List<EmployeeLanguageGetDto> listEmployeeLanguage = new List<EmployeeLanguageGetDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        listEmployeeLanguage = await http.GetFromJsonAsync<List<EmployeeLanguageGetDto>>("/GetEmployeeLanguage");
+    }
+
+}
+
+
+
+
+
+
