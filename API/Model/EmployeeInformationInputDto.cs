@@ -6,7 +6,7 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string gender { get; set; }
-        public DateOnly DateofBirth { get; set; }
+        public DateTime DateofBirth { get; set; }
         public string Nationality { get; set; }
         public string nationalId { get; set; }
         public string maritalStatus { get; set; }
