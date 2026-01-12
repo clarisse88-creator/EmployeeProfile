@@ -9,7 +9,7 @@
         public string Writing { get; set; }
         public string Reading { get; set; }
         public string Speaking { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public string CreatedBy { get; set; }
     }
 }

@@ -1,0 +1,70 @@
+﻿@page "/EmployeeInformation"
+@using Web.Model
+
+@layout MainLayout
+@inject HttpClient http
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet" />
+
+    <h3>EducationLevel</h3>
+
+
+    <a href="/add-EmployeeInformation">Add Employee Information</a>
+
+    <div class="card">
+        <table>
+            <thead>
+            <th>Employee</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Nationality</th>
+            <th>nationalId</th>
+            <th>M.Status</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>UnitId</th>
+            <th>JobId</th>
+            </thead>
+            <tbody>
+                @foreach (var item in listEmployeeInformation)
+                {
+                    <tr>
+                        <td>@item.EmployeeId</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.gender</td>
+                        <td>@item.DateofBirth</td>
+                        <td>@item.Nationality</td>
+                        <td>@item.nationalId</td>
+                        <td>@item.maritalStatus</td>
+                        <td>@item.Email</td>
+                        <td>@item.Address</td>
+                        <td>@item.EmergencyPhone</td>
+                        <td>@item.UnitId</td>
+                        <td>@item.JobId</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    List<EmployeeInformationGetDto> listEmployeeInformation = new List<EmployeeInformationGetDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        listEmployeeInformation = await http.GetFromJsonAsync<List<EmployeeInformationGetDto>>("/GetEmployeeInformation");
+    }
+
+}
+
+
+
+
+

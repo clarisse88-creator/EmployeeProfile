@@ -1,0 +1,60 @@
+﻿@page "/add-EmployeeInformation"
+@using Web.Model
+@inject HttpClient http
+@inject NavigationManager nav
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet" />
+
+    <h3 class="label">Add Employee Information Level</h3>
+    <EditForm Model="EmployeeInformation" OnValidSubmit="SaveEmployeeInformation">
+        <label class="label">Employee</label>
+        <input type="text" placeholder="Enter Employee" class="item" @bind-value="EmployeeInformation.EmployeeId" />
+        <label class="label">First Name</label>
+        <input type="text" placeholder="Enter First Name" class="item" @bind-value="EmployeeInformation.FirstName" />
+        <label class="label">Last Name</label>
+        <input type="text" placeholder="Enter Last Name" class="item" @bind-value="EmployeeInformation.LastName" />
+        <label class="label">Gender</label>
+        <input type="text" placeholder="Enter Gender " class="item" @bind-value="EmployeeInformation.gender" />
+        <label class="label">Nationality</label>
+        <input type="text" placeholder="Enter Nationality " class="item" @bind-value="EmployeeInformation.Nationality" />
+        
+        <label class="label">Date of Birth</label>
+        <input type="date" placeholder="Enter Date of Birth " class="item" @bind-value="EmployeeInformation.DateofBirth" />
+        <label class="label">National ID</label>
+        <input type="text" placeholder="Enter ID" class="item" @bind-value="EmployeeInformation.nationalId" />
+        <label class="label">Marital Status</label>
+        <input type="text" placeholder="Enter Status" class="item" @bind-value="EmployeeInformation.maritalStatus" />
+        <label class="label">Email</label>
+        <input type="text" placeholder="Enter Email" class="item" @bind-value="EmployeeInformation.Email" />
+        <label class="label">Address</label>
+        <input type="text" placeholder="Enter Address " class="item" @bind-value="EmployeeInformation.Address" />
+        <label class="label">Emergency Phone</label>
+        <input type="tel" placeholder="Enter Emergency " class="item" @bind-value="EmployeeInformation.EmergencyPhone" />
+        <label class="label">Department</label>
+        <input type="text" placeholder="Enter Department " class="item" @bind-value="EmployeeInformation.UnitId" />
+        <label class="label">Job</label>
+        <input type="text" placeholder="Enter Job" class="item" @bind-value="EmployeeInformation.JobId" />
+
+
+        <button type="submit" class="BUTTON">Save</button>
+
+    </EditForm>
+
+</div>
+@code
+{
+    EmployeeInformationInputDto EmployeeInformation = new EmployeeInformationInputDto();
+
+    public async Task SaveEmployeeInformation()
+    {
+        var result = await http.PostAsJsonAsync("/SaveEmployeeInformation", EmployeeInformation);
+        if (result.IsSuccessStatusCode)
+        {
+            nav.NavigateTo("/EmployeeInformation");
+        }
+    }
+
+}
+

@@ -13,8 +13,8 @@
 
     <a href="/add-EmployeeLanguage">Add EmployeeLanguage</a>
 
-
-    <table class="card">
+    <div class="card">
+    <table >
         <thead>
         <th>EmployeeId</th>
         <th>LanguageName</th>
@@ -42,6 +42,7 @@
             }
         </tbody>
     </table>
+    </div>
 </div>
 
 @code {
@@ -49,7 +50,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        listEmployeeLanguage = await http.GetFromJsonAsync<List<EmployeeLanguageGetDto>>("/GetEmployeeLanguage");
+        listEmployeeLanguage = await http.GetFromJsonAsync<List<EmployeeLanguageGetDto>>("/EmployeeLanguage");
     }
 
 }

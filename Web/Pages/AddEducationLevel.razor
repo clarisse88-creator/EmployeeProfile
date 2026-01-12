@@ -9,16 +9,16 @@
 
 <h3 class="label">Add EducationLevel Level</h3>
 <EditForm Model="EducationLevel" OnValidSubmit="SaveEducationLevel">
-    <label class="label">employee</label>
+    <label class="label">Employee</label>
     <input type="text" placeholder="Enter Employee" class="item" @bind-value="EducationLevel.employeeId" />
     <label class ="label">Institution</label>
     <input type="text" placeholder="Enter Institution" class="item" @bind-value="EducationLevel.Institution" />
     <label class="label">Qualification</label>
     <input type="text" placeholder="Enter Qualification" class="item" @bind-value="EducationLevel.Qualification" />
     <label class ="label">Start Year</label>
-    <input type="DateTime" placeholder="Enter Start Year " class="item" @bind-value="EducationLevel.StartYear" />
+    <input type="date" placeholder="Enter Start Year " class="item" @bind-value="EducationLevel.StartYear" />
     <label class="label">End Year</label>
-    <input type="DateTime" placeholder="Enter End Year " class="item" @bind-value="EducationLevel.EndYear" />
+    <input type="date" placeholder="Enter End Year " class="item" @bind-value="EducationLevel.EndYear" />
 
 
     <button type="submit" class="BUTTON">Save</button>

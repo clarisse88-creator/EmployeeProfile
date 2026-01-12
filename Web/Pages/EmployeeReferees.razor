@@ -1,0 +1,63 @@
+﻿@page "/EmployeeReferees"
+@using Web.Model
+
+@layout MainLayout
+@inject HttpClient http
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet" />
+
+    <h3>EmployeeExperience</h3>
+
+
+    <a href="/add-EmployeeReferees">Add EmployeeReferees</a>
+
+    <div class ="card">
+    <table >
+        <thead>
+        <th>EmployeeId</th>
+        <th>RefereeName</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Relationship</th>
+        <th>Address</th>
+        <th>CreatedBy</th>
+
+
+
+        </thead>
+        <tbody>
+            @foreach (var item in listEmployeeReferees)
+            {
+                <tr>
+                    <td>@item.EmployeeId</td>
+                    <td>@item.RefereeName</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td>@item.Relationship</td>
+                    <td>@item.Address</td>
+                    <td>@item.CreatedBy</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</div>
+
+@code {
+    List<EmployeeRefereesGetDto> listEmployeeReferees = new List<EmployeeRefereesGetDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        listEmployeeReferees = await http.GetFromJsonAsync<List<EmployeeRefereesGetDto>>("/GetEmployeeReferees");
+    }
+
+}
+
+
+
+
+
+
+

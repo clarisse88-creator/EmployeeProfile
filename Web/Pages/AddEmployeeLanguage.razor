@@ -20,7 +20,7 @@
         <label class="label">Writing</label>
         <input type="DateTime" placeholder="Enter Writing " class="item" @bind-value="EmployeeLanguage.Writing" />
         <label class="label">Reading</label>
-        <input type="DateTime" placeholder="Enter Reading " class="item" @bind-value="EmployeeLanguage.Reading" />
+        <input type="text" placeholder="Enter Reading " class="item" @bind-value="EmployeeLanguage.Reading" />
         <label class="label">Speaking</label>
         <input type="text" placeholder="Enter Speaking  " class="item" @bind-value="EmployeeLanguage.Speaking" />
         <label class="label">CreatedBy</label>
@@ -38,7 +38,7 @@
         var result = await http.PostAsJsonAsync("/SaveEmployeeLanguage", EmployeeLanguage);
         if (result.IsSuccessStatusCode)
         {
-            nav.NavigateTo("/EmployeeLanguange");
+            nav.NavigateTo("/EmployeeLanguage");
         }
     }
 }

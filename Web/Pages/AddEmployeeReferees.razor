@@ -1,0 +1,48 @@
+﻿@page "/add-EmployeeReferees"
+@using Web.Model
+@inject HttpClient http
+@inject NavigationManager nav
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet" />
+
+    <h3 class="label">Add EmployeeReferees</h3>
+    <EditForm Model="EmployeeReferees" OnValidSubmit="SaveEmployeeReferees">
+        <label class="label">employee</label>
+        <input type="text" placeholder="Enter Employee" class="item" @bind-value="EmployeeReferees.EmployeeId" />
+        <label class="label">Name</label>
+        <input type="text" placeholder="Enter Referee Name" class="item" @bind-value="EmployeeReferees.RefereeName" />
+        <label class="label">Phone</label>
+        <input type="text" placeholder="Enter Phone" class="item" @bind-value="EmployeeReferees.Phone" />
+        <label class="label">Email</label>
+        <input type="text" placeholder="Enter Email " class="item" @bind-value="EmployeeReferees.Email" />
+        <label class="label">Relationship</label>
+        <input type="text" placeholder="Enter Relationship " class="item" @bind-value="EmployeeReferees.Relationship" />
+        <label class="label">CreatedBy</label>
+        <input type="text" placeholder="Enter CreatedBy " class="item" @bind-value="EmployeeReferees.CreatedBy" />
+        <label class="label">Address</label>
+        <input type="text" placeholder="Enter Address " class="item" @bind-value="EmployeeReferees.Address" />
+
+
+
+        <button type="submit" class="BUTTON">Save</button>
+
+    </EditForm>
+
+</div>
+@code
+{
+    EmployeeRefereesInputDto EmployeeReferees = new EmployeeRefereesInputDto();
+
+    public async Task SaveEmployeeReferees()
+    {
+        var result = await http.PostAsJsonAsync("/SaveEmployeeReferees", EmployeeReferees);
+        if (result.IsSuccessStatusCode)
+        {
+            nav.NavigateTo("/EmployeeReferees");
+        }
+    }
+
+}
+

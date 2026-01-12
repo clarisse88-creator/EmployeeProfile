@@ -1,0 +1,42 @@
+﻿@page "/add-EmployeeCertificate"
+@using Web.Model
+@inject HttpClient http
+@inject NavigationManager nav
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet" />
+
+    <h3 class="label">Add EmployeeCertificate</h3>
+    <EditForm Model="EmployeeCertificate" OnValidSubmit="SaveEmployeeCertificate">
+        <label class="label">Training</label>
+        <input type="text" placeholder="Enter Training" class="item" @bind-value="EmployeeCertificate.TrainingId" />
+        <label class="label">Employee</label>
+        <input type="text" placeholder="Enter Employee" class="item" @bind-value="EmployeeCertificate.EmployeeId" />
+        <label class="label">DateObtained</label>
+        <input type="date" placeholder="Enter DateObtained" class="item" @bind-value="EmployeeCertificate.DateObtained" />
+        <label class="label">CreatedBy</label>
+        <input type="text" placeholder="Enter Creator" class="item" @bind-value="EmployeeCertificate.CreatedBy" />
+       
+
+
+        <button type="submit" class="BUTTON">Save</button>
+
+    </EditForm>
+
+</div>
+@code
+{
+    EmployeeCertificateInputDto EmployeeCertificate = new EmployeeCertificateInputDto();
+
+    public async Task SaveEmployeeCertificate()
+    {
+        var result = await http.PostAsJsonAsync("/SaveEmployeeCertificate", EmployeeCertificate);
+        if (result.IsSuccessStatusCode)
+        {
+            nav.NavigateTo("/EmployeeCertificate");
+        }
+    }
+
+}
+

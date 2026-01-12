@@ -1,0 +1,56 @@
+﻿@page "/EmployeeCertificate"
+@using Web.Model
+
+@layout MainLayout
+@inject HttpClient http
+
+<div class="container-fluid mt-5">
+
+    <link href="css/form.css" rel="stylesheet" />
+
+    <h3>EducationLevel</h3>
+
+
+    <a href="/add-EmployeeCertificate">Add EmployeeCertificate</a>
+
+    <div class="card">
+    <table>
+        <thead>
+        <th>TrainingId</th>
+        <th>EmployeeId</th>
+        <th>DateObtained</th>
+        <th>CreatedBy</th>
+        <th>DateCreated</th>
+
+
+        </thead>
+        <tbody>
+            @foreach (var item in listEmployeeCertificate)
+            {
+                <tr>
+                    <td>@item.TrainingId</td>
+                    <td>@item.EmployeeId</td>
+                    <td>@item.DateObtained</td>
+                    <td>@item.CreatedBy</td>
+                    <td>@item.DateCreated</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</div>
+
+@code {
+    List<EmployeeCertificateGetDto> listEmployeeCertificate = new List<EmployeeCertificateGetDto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        listEmployeeCertificate = await http.GetFromJsonAsync<List<EmployeeCertificateGetDto>>("/GetEmployeeCertificate");
+    }
+
+}
+
+
+
+

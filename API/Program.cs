@@ -64,6 +64,56 @@ app.MapPost("/SaveEmployeeLanguage", (EmployeeLanguageInputDto std) =>
     context.SaveChanges();
     return Results.Ok("Save Succefully");
 });
+app.MapPost("/SaveEmployeeReferees", (EmployeeRefereesInputDto std) =>
+{
+    DataContext context = new DataContext();
+    var EmployeeReferees = new EmployeeReferees();
+    EmployeeReferees.EmployeeId = std.EmployeeId;
+    EmployeeReferees.RefereeName = std.RefereeName;
+    EmployeeReferees.Phone = std.Phone;
+    EmployeeReferees.Email = std.Email;
+    EmployeeReferees.Relationship = std.Relationship;
+    EmployeeReferees.Address = std.Address;
+    EmployeeReferees.CreatedBy = std.CreatedBy;
+    context.Add(EmployeeReferees);
+    context.SaveChanges();
+    return Results.Ok("Save Succefully");
+});
+app.MapPost("/SaveEmployeeCertificate", (EmployeeCertificateInputDto std) =>
+{
+    DataContext context = new DataContext();
+    var EmployeeCertificate = new EmployeeCertificate();
+    EmployeeCertificate.TrainingId = std.EmployeeId;
+    EmployeeCertificate.EmployeeId = std.EmployeeId;
+    EmployeeCertificate.DateObtained = std.DateObtained;
+    EmployeeCertificate.CreatedBy = std.CreatedBy;
+    EmployeeCertificate.DateCreated = DateTime.Now;
+    context.Add(EmployeeCertificate);
+    context.SaveChanges();
+    return Results.Ok("Save Succefully");
+});
+app.MapPost("/SaveEmployeeInformation", (EmployeeInformationInputDto std) =>
+{
+    DataContext context = new DataContext();
+    var EmployeeInformation = new EmployeeInformation();
+    EmployeeInformation.EmployeeId = std.EmployeeId;
+    EmployeeInformation.FirstName = std.FirstName;
+    EmployeeInformation.LastName = std.LastName;
+    EmployeeInformation.gender = std.gender;
+    EmployeeInformation.DateofBirth = std.DateofBirth;
+    EmployeeInformation.Nationality = std.Nationality;
+    EmployeeInformation.nationalId = std.nationalId;
+    EmployeeInformation.maritalStatus = std.maritalStatus;
+    EmployeeInformation.Email = std.Email;
+    EmployeeInformation.Address = std.Address;
+    EmployeeInformation.EmergencyPhone = std.EmergencyPhone;
+    EmployeeInformation.UnitId = std.UnitId;
+    EmployeeInformation.JobId = std.JobId;
+    context.Add(EmployeeInformation);
+    context.SaveChanges();
+    return Results.Ok("Save Succefully");
+});
+
 app.MapGet("/GetEducationLevel", () =>
 {
     DataContext context = new DataContext();
@@ -78,11 +128,33 @@ app.MapGet("/GetEmployeeExperience", () =>
     return Results.Ok(EmployeeExperience);
 
 });
-app.MapGet("/GetEmployeeLanguage", () =>
+app.MapGet("/EmployeeLanguage", () =>
 {
     DataContext context = new DataContext();
     var EmployeeLanguage = context.Set<EmployeeLanguage>().ToList();
     return Results.Ok(EmployeeLanguage);
+
+});
+app.MapGet("/GetEmployeeReferees", () =>
+{
+    DataContext context = new DataContext();
+    var EmployeeReferees = context.Set<EmployeeReferees>().ToList();
+    return Results.Ok(EmployeeReferees);
+
+});
+
+app.MapGet("/GetEmployeeCertificate", () =>
+{
+    DataContext context = new DataContext();
+    var EmployeeCertificate = context.Set<EmployeeCertificate>().ToList();
+    return Results.Ok(EmployeeCertificate);
+
+});
+app.MapGet("/GetEmployeeInformation", () =>
+{
+    DataContext context = new DataContext();
+    var EmployeeInformation = context.Set<EmployeeInformation>().ToList();
+    return Results.Ok(EmployeeInformation);
 
 });
 app.Run();

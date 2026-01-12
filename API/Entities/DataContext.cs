@@ -13,11 +13,18 @@ namespace API.Entities
         protected override void OnModelCreating(ModelBuilder model)
         {
             base.OnModelCreating(model);
+
             model.Entity<EducationLevel>();
 
             model.Entity<EmployeeExperience>();
 
             model.Entity<EmployeeLanguage>();
+
+            model.Entity<EmployeeReferees>();
+
+            model.Entity<EmployeeCertificate>();
+
+            model.Entity<EmployeeInformation>();
         }
     }
 }
